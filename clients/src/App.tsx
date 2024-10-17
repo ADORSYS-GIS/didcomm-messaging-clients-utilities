@@ -2,16 +2,17 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Resolve from './utils/readme'
+
 import React from 'react'
+import resolveDIDExample from './utils/readme'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  
+
   return (
     <>
-{Resolve()}
+      {resolveDIDExample()}
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
