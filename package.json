@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "did-universal-resolver-driver": "^0.1.0"
+  }
+}
