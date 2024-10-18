@@ -15,17 +15,16 @@ export default class PeerDIDResolver implements DIDResolver {
             // Dissect the DID address
             const chain = did.replace(/^did:peer:2\./, "").split('.').map((e) => {
                 const purposeCode = e.charAt(0);
-                const purpose = mapPurposeFromCode(purposeCode); // Implement this function to map codes
+                const purpose = mapPurposeFromCode(purposeCode);
                 const multikey = e.slice(1);
                 return { purpose, multikey };
             });
 
-            // Initialize relationships
+
             const authentication: string[] = [];
             const keyAgreement: string[] = [];
             const verificationMethods: VerificationMethod[] = [];
 
-            // Resolve verification methods
             chain.filter(({ purpose }) => purpose !== 'Service').forEach((item, index) => {
                 const id = `#key-${index + 1}`;
                 const { purpose, multikey } = item;
@@ -42,7 +41,7 @@ export default class PeerDIDResolver implements DIDResolver {
 
                 const method: VerificationMethod = {
                     id,
-                    type: "Ed25519VerificationKey2018", // Or "JsonWebKey2020" based on the format
+                    type: "Ed25519VerificationKey2018",
                     controller: did,
                     publicKeyMultibase: `z${multikey}`
                 };
@@ -56,7 +55,7 @@ export default class PeerDIDResolver implements DIDResolver {
 
             chain.filter(({ purpose }) => purpose === 'Service').forEach(({ multikey }) => {
                 const decodedService = base64url.decode(multikey);
-                const service = reverseAbbreviateService(decodedService); // Implement this function
+                const service = reverseAbbreviateService(decodedService);
 
                 if (!service.id) {
                     service.id = serviceNextId === 0 ? "#service" : `#service-${serviceNextId}`;
@@ -66,7 +65,6 @@ export default class PeerDIDResolver implements DIDResolver {
                 services.push(service);
             });
 
-            // Construct the DID document
             const diddoc: DIDDoc = {
                 id: did,
                 keyAgreement,
@@ -78,7 +76,7 @@ export default class PeerDIDResolver implements DIDResolver {
             return diddoc;
 
         } catch (error) {
-            // In case of any error, return null
+
             console.error("Error resolving DID:", error);
             return null;
         }
@@ -88,7 +86,7 @@ export default class PeerDIDResolver implements DIDResolver {
 
 
 function reverseAbbreviateService(decodedService: string): Service {
-    // Implement this function to reverse abbreviate services
+
     return {
         id: "",
         type: "SomeServiceType",
