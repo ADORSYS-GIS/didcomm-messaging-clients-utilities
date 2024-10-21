@@ -1,5 +1,4 @@
-import { DIDDoc, DIDResolver, Secret, SecretsResolver } from "didcomm";
-
+import { DIDDoc, DIDResolver, Secret, SecretsResolver } from 'didcomm';
 
 export class ExampleDIDResolver implements DIDResolver {
   diddoc: DIDDoc[];
@@ -11,7 +10,6 @@ export class ExampleDIDResolver implements DIDResolver {
   async resolve(did: string): Promise<DIDDoc | null> {
     return this.diddoc.find((ddoc) => ddoc.id === did) || null;
   }
-
 }
 
 export class ExampleSecretsResolver implements SecretsResolver {
@@ -27,7 +25,7 @@ export class ExampleSecretsResolver implements SecretsResolver {
 
   async find_secrets(secretIds: string[]): Promise<string[]> {
     return secretIds.filter((id) =>
-      this.knownSecrets.find((secret) => secret.id === id)
+      this.knownSecrets.find((secret) => secret.id === id),
     );
   }
 }

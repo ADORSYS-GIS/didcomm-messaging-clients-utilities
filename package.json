@@ -24,6 +24,5 @@
   },
   "workspaces": [
     "packages/clients"
-    
   ]
 }
