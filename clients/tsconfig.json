@@ -8,6 +8,6 @@
       "moduleResolution": "Node",
       "skipLibCheck": true
   },
-  "include": ["src/utils/readme.tsx"],
+  "include": ["src/utils/resolver.ts"],
   "exclude": ["node_modules"]
 }

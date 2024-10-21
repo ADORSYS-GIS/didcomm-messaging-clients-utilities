@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@jest/globals": "^29.7.0",
     "@veramo/did-provider-peer": "^6.0.0",
+    "base64url": "^3.0.1",
     "didcomm": "^0.4.1",
     "ethr-did-resolver": "^11.0.2",
     "peer-did-resolver": "^2.0.0",
