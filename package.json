@@ -1,15 +1,14 @@
 {
   "name": "didcomm-messaging-clients-utilities",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "npm run test --workspaces",
     "build": "npm run build --workspaces",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint packages/** --ext .ts --no-error-on-unmatched-pattern",
-    "lint:fix": "eslint --fix packages/** --ext .ts --no-error-on-unmatched-pattern"
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "",
