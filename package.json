@@ -9,7 +9,6 @@
     "build": "npm run build --workspaces",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
-
   },
   "keywords": [],
   "author": "",
@@ -24,6 +23,5 @@
   },
   "workspaces": [
     "packages/clients"
-    
   ]
 }
