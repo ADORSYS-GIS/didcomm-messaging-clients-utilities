@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { v4: uuidv4 } = require('uuid'); // Import UUID library
+const { v4: uuidv4 } = require('uuid'); 
 
 const MEDIATOR_DID = process.env.MEDIATOR_DID || "did:web:alice-mediator.com:alice_mediator_pub";
 const ALICE_DID = process.env.ALICE_DID || "did:key:z6MkrQT3VKYGkbPaYuJeBv31gNgpmVtRWP5yTocLDBgPpayM";
