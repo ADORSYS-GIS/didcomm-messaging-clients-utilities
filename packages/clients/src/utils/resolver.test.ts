@@ -29,7 +29,7 @@ const doc = {
     },
   ],
 };
-describe('sum module', () => {
+describe('resolver module', () => {
   test('test did peer resolver', () => {
     expect(
       new PeerDIDResolver()

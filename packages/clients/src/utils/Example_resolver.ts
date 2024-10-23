@@ -12,7 +12,7 @@ export class ExampleDIDResolver implements DIDResolver {
   }
 }
 
-export class ExampleSecretsResolver implements SecretsResolver {
+export default class ExampleSecretsResolver implements SecretsResolver {
   knownSecrets: Secret[];
 
   constructor(knownSecrets: Secret[]) {
