@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "lint": "eslint '**/*.{js,ts,jsx,tsx}' --fix",
     "build": "tsc -b"
   },
   "author": "",
@@ -14,6 +15,10 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@types/babel__core": "^7.20.5",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^9.13.0",
     "ts-jest": "^29.2.5"
   }
 }

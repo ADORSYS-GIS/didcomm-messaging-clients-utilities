@@ -102,7 +102,6 @@ function reverseAbbreviateService(decodedService: string): Service {
     id: parsed.id || '',
     type: 'DIDCommMessaging',
     serviceEndpoint: parsed.s,
- 
   };
 }
 

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "lint": "eslint ./src --ext .ts",
+    "lint": "eslint './*.{js,ts,jsx,tsx}'",
     "dev": "vite",
     "test": "",
     "build": "tsc -b",
