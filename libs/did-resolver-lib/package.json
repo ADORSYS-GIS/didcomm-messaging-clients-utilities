@@ -1,0 +1,27 @@
+{
+  "name": "did-resolver-lib",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint '**/*.{js,ts,jsx,tsx}'",
+    "build": "tsc -b"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "base64url": "^3.0.1",
+    "didcomm": "^0.4.1"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/babel__core": "^7.20.5",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^9.13.0",
+    "ts-jest": "^29.2.5",
+    "typescript-eslint": "^8.7.0"
+  }
+}
