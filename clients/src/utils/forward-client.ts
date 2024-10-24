@@ -1,45 +1,45 @@
-import { Message } from "didcomm";
+import { DIDResolver, Message, SecretsResolver } from "didcomm";
 import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
+import PeerDIDResolver from "./resolver";
+import ExampleSecretsResolver from "./Example_resolver";
 
-const resolver = new PeerDIDResolver();
+const FROM = '';
+let did_resolver: DIDResolver = new PeerDIDResolver();
+let secret_resolver: SecretsResolver = new ExampleSecretsResolver([]);
 
-export async function sendForwardMessage(){
-    const ALICE_DID = "did:peer:recipientDID";
 
-    const recipientDIDDoc = await resolver.resolve(ALICE_DID);
-
-    const BOB_DID = "did:peer:senderDID";
-    const senderDIDDoc = await resolver.resolve(BOB_DID);
-
+async function forward_msg(to:string[], type: string, body: {}): Promise<string>{
     const msg = new Message({
-        id:uuidv4(),
-        typ: "application/didcomm-encrypted+json"
-        type:"https://didcomm.org/routing/2.0/forward",
-        from: BOB_DID,
-        to: [ALICE_DID],
-        body: {message: "hey there"},
-    });
-
-    const didcomm = new didcomm();
-    const encryptedMessage = await didcomm.pack_encrypted({
-        message: msg,
-        to: ALICE_DID,
-        from: BOB_DID,
-    });
-    
-    const forwardMessage = new Message({
         id: uuidv4(),
-        typ: "application/didcomm-encrypted+json"
-        type: "https://didcomm.org/routing/2.0/forward",
-        to:["did:peer:mediatorDID"],
-        body: encryptedMessage
-    });
-
-    const response = await axios.post("https://mediator-endpoint.com", forwardMessage,{
-        headers:{
-            'Content-type': "application/didcomm-encrypted+json"
+        typ: "application/didcomm-plain+json",
+        type: type,
+        from: FROM,
+        to: to,
+        body: body
+    })
+    
+    try{
+    const [packed_msg, _packedMetadata] = await msg.pack_encrypted(
+        to[0],
+        FROM,
+        null,
+        did_resolver,
+        secret_resolver,
+        {
+            forward: true
         }
-    });
-    console.log("Message forwared successfully:", response.status);
-}
+    )
+    let response = await axios.post("https://mediator-endpoint.com", packed_msg,{
+        headers:{
+            'Content-type': "application/didcomm-plain+json"
+            }
+        });
+        console.log("Message forwared successfully:", response.status);
+    }
+        catch (error: any) {
+            Error(error)
+        }
+        return "Messages sent to recipient";
+    
+    }
