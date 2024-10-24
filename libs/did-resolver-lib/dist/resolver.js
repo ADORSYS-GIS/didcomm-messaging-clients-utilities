@@ -23,6 +23,7 @@ class PeerDIDResolver {
             });
             const authentication = [];
             const keyAgreement = [];
+            const assertionMethod = [];
             const verificationMethods = [];
             chain
                 .filter(({ purpose }) => purpose !== 'Service')
@@ -31,6 +32,8 @@ class PeerDIDResolver {
                 const { purpose, multikey } = item;
                 switch (purpose) {
                     case 'Assertion':
+                        assertionMethod.push(id);
+                        break;
                     case 'Verification':
                         authentication.push(id);
                         break;
@@ -40,7 +43,7 @@ class PeerDIDResolver {
                 }
                 const method = {
                     id,
-                    type: 'Ed25519VerificationKey2018',
+                    type: 'Multikey',
                     controller: did,
                     publicKeyMultibase: `z${multikey}`,
                 };
@@ -56,7 +59,7 @@ class PeerDIDResolver {
                 const service = reverseAbbreviateService(decodedService);
                 if (!service.id) {
                     service.id =
-                        serviceNextId === 0 ? '#service' : `#service-${serviceNextId}`;
+                        serviceNextId === 0 ? '#didcomm' : `#didcomm-${serviceNextId}`;
                     serviceNextId++;
                 }
                 services.push(service);
@@ -78,10 +81,11 @@ class PeerDIDResolver {
 }
 exports.default = PeerDIDResolver;
 function reverseAbbreviateService(decodedService) {
+    const parsed = JSON.parse(decodedService);
     return {
-        id: '',
-        type: 'SomeServiceType',
-        serviceEndpoint: decodedService,
+        id: parsed.id || '',
+        type: 'DIDCommMessaging',
+        serviceEndpoint: parsed.s,
     };
 }
 function mapPurposeFromCode(code) {
