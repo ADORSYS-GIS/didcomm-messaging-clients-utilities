@@ -8,7 +8,8 @@
     "test": "npm run test --workspaces",
     "build": "npm run build --workspaces",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "lint": "npm run lint --workspaces"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,9 @@
     "typescript": "5.5.4"
   },
   "workspaces": [
-    "packages/clients"
-  ]
+    "libs/*"
+  ],
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
 }

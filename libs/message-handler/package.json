@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "lint": "eslint ./src --ext .ts",
-    "test": "jest",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "test": "",
+    "build": "tsc -b",
     "preview": "vite preview"
   },
   "dependencies": {

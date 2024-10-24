@@ -8,6 +8,6 @@
     "moduleResolution": "Node",
     "skipLibCheck": true
   },
-  "include": ["src/utils/resolver.ts"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules"]
 }
